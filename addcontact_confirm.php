@@ -1,4 +1,6 @@
 <?php
+    $conn=mysqli_connect("localhost","root","","phonebook_db")or die (mysqli_error($conn));
+
     if(isset($_POST['add'])){
     
     $fname= $_POST['fname'];?>
@@ -19,6 +21,15 @@
     $birthday= $_POST['birthday'];?>
     <p><?php echo "Birthday:"?><?php echo "$birthday";?></p><?php 
 
+    $contactnum= $_POST['contactnum'];?>
+    <p><?php echo "Contact Number: "?><?php echo "$contactnum";?></p><?php
+    
+    $sql="insert into tblcontact(FName, LName, Gender, City,Bday,Contactnum) 
+    values('$fname','$lname', '$gender', '$city','$birthday','$contactnum')";
+    $q=mysqli_query($conn,$sql) or die (mysqli_error($conn));
+    header("location:add_contacts.php");
     } 
     
+
+
 ?>
